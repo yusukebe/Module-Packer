@@ -136,7 +136,7 @@ Module::Packer - Make starter class from template module and unpack as different
 =head1 DESCRIPTION
 
 Module::Packer is simple script and classes for making starter script.
-This module make starter class from template module and unpack as diffrent module.
+This module make starter class from template module and unpack as different module.
 
 =head1 AUTHOR
 
