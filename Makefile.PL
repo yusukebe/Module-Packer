@@ -4,6 +4,8 @@ all_from 'lib/File/Packer.pm';
 
 # requires '';
 
+install_script 'bin/file-packer.pl';
+
 tests 't/*.t';
 author_tests 'xt';
 
