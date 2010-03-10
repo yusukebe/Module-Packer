@@ -5,7 +5,7 @@ use File::Packer;
 use Getopt::Long;
 
 my %opt;
-GetOptions( "template=s" => $opt{template}, "starter=s" => $opt{starter} );
+GetOptions( "template=s" => \$opt{template}, "starter=s" => \$opt{starter} );
 my $packer = File::Packer->new( dir => "./" );
 $packer->make_starter( \%opt );
 

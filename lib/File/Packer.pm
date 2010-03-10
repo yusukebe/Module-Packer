@@ -71,9 +71,11 @@ sub make_starter {
     my $data = $self->pack;
     my $template = <<"EOF";
 package $class;
+use base 'File::Packer::Starter';
 use strict;
 use warnings;
-use File::Packer::Unpack;
+
+1;
 
 __DATA__
 
@@ -112,16 +114,12 @@ File::Packer is
 
 =head2 Replace Rule for template
 
-=item
 Module::Name -> ___name___
 
-=item
 Module-Name  -> ___name.replace('::','-')___
 
-=item
 module_name  -> ___name.replace('::','_').lower___
 
-=item
 Name.pm      -> ___file___
 
 =head1 AUTHOR

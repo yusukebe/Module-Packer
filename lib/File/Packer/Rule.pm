@@ -29,10 +29,10 @@ sub _rule {
     my $name    = pop @path;
     $name .= ".pm";
     return {
-        $module        => "___name___",
-        $module_h      => "___name.replace('::','-')___",
-        $module_name   => "___name.replace('::','_').lower___",
-        $name       => "___file___",
+        $module        => "[___ name ___]",
+        $module_h      => "[___ name.replace('::','-') ___]",
+        $module_name   => "[___ name.replace('::','_').lower ___]",
+        $name       => "[___ file ___]",
     };
 }
 

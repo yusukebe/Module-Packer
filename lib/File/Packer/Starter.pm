@@ -6,13 +6,13 @@ use Template;
 
 sub new {
     my ( $class, %opt ) = @_;
-    my $self = bless { class => $class }, $class;
+    my $self = bless { class => $class, module => $opt{module} || $ARGV[0] },
+      $class;
     $self;
 }
 
 sub run {
     my $self = shift;
-    $self->{module} = $ARGV[0];
     my $data = "$self->{class}::DATA";
     my $yaml = join '', <$data>;
     $yaml = $self->process_tt( $yaml );
@@ -24,8 +24,8 @@ sub process_tt {
     my ( $self, $content ) = @_;
     my $tt = Template->new(
         {
-            START_TAG => '___',
-            END_TAG   => '___',
+            START_TAG => quotemeta('[___'),
+            END_TAG   => quotemeta('___]'),
         }
     );
     my $output;
@@ -35,9 +35,9 @@ sub process_tt {
 
 sub vars {
     my $self = shift;
-    my @path = split '::', $self->{class};
+    my @path = split '::', $self->{module};
     my $file = pop @path;
-    return { name => $self->{class}, file => "$file.pm" };
+    return { name => $self->{module}, file => "$file.pm" };
 }
 
 1;
