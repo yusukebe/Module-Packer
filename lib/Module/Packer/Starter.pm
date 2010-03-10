@@ -13,6 +13,9 @@ sub new {
 
 sub run {
     my $self = shift;
+    unless( $self->{module} ){
+        die "New module name argument is required\n";
+    }
     my $data = "$self->{class}::DATA";
     my $yaml = join '', <$data>;
     $yaml = $self->process_tt( $yaml );
