@@ -16,8 +16,9 @@ lib/Module/Packer.pm
 lib/Module/Packer/Rule.pm
 lib/Module/Packer/Starter.pm
 lib/Module/Packer/Unpack.pm
+bin/module-packer
 Makefile.PL
-MANIFEST			This list of files
+MANIFEST        This list of files
 META.yml
 README
 t/00_compile.t
@@ -29,7 +30,6 @@ t/14_rule.t
 t/15_parse.t
 t/lib/MyApp/Starter.pm
 t/MyApp/foo.txt
-bin/module-packer
 xt/01_podspell.t
 xt/02_perlcritic.t
 xt/03_pod.t

@@ -9,13 +9,12 @@ requires 'YAML';
 requires 'Template';
 requires 'Getopt::Long';
 
-auto_install;
-install_script 'bin/module-packer';
-
 tests 't/*.t';
 author_tests 'xt';
 
 test_requires 'Test::More';
 auto_set_repository;
 auto_include;
+
+install_script('bin/module-packer');
 WriteAll;
