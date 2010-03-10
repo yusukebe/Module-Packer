@@ -2,3 +2,6 @@ Revision history for Perl extension Module::Packer
 
 0.01    Wed Mar 10 21:42:53 2010
         - original version
+
+0.02    Thu Mar 11 05:15:00 2010
+        - it works.
