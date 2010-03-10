@@ -9,7 +9,8 @@ requires 'YAML';
 requires 'Template';
 requires 'Getopt::Long';
 
-install_script 'bin/module-packer.pl';
+auto_install;
+install_script 'bin/module-packer';
 
 tests 't/*.t';
 author_tests 'xt';
