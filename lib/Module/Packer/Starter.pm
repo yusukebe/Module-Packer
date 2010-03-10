@@ -6,7 +6,9 @@ use Template;
 
 sub new {
     my ( $class, %opt ) = @_;
-    my $self = bless { class => $class, module => $opt{module} || $ARGV[0] },
+    my $module = $opt{module} || $ARGV[0] || '';
+    $module =~ s/\/$//;
+    my $self = bless { class => $class, module => $module },
       $class;
     $self;
 }
