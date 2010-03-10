@@ -30,6 +30,7 @@ sub slurp_dir {
     my ( $self, $dir ) = @_;
     for my $c ( $dir->children ){
         if( -f $c->stringify ){
+            next if $c->basename eq 'Starter.pm';
             $self->add_data( $c );
         }else{
             $self->slurp_dir( $c );
@@ -76,15 +77,6 @@ use strict;
 use warnings;
 
 1;
-__END__
-
- =head1 SYNOPSIS
-
-   use $class\:\:Starter;
-   my \$starter = $class\:\:Starter->new;
-   \$starter->run;
-
- =cut
 
 __DATA__
 
