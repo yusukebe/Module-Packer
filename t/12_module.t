@@ -3,8 +3,8 @@ use Test::More;
 
 use_ok('File::Packer');
 
-my $packer = File::Packer->new( dir => "t/MyApp" );
+my $packer = File::Packer->new( dir => "t/MyApp", template_module => 'MyApp' );
 ok( $packer );
-#$packer->make_starter('MyApp::Starter'); do not run!
+$packer->make_starter('MyApp::Starter','debug'); #do not run!
 
 done_testing;

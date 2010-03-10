@@ -6,6 +6,7 @@ use File::Spec;
 use IO::File;
 use Path::Class qw( dir file );
 use YAML qw( Dump );
+use File::Packer::Rule;
 
 sub new {
     my ( $class, %opt ) = @_;
@@ -13,6 +14,7 @@ sub new {
         dir => dir( $opt{dir} || '/' ),
         max_recursive => 50,    #XXX
         data => '',
+        template_module => $opt{template_module} || '', #XXX
     }, $class;
     $self;
 }
@@ -38,16 +40,22 @@ sub slurp_dir {
 sub add_data {
     my ( $self, $file ) = @_;
     my $data;
-    $data->{file} = $self->file_path( $file );
+    $data->{file} = $self->apply_rule( $self->file_path( $file ) );
     for ( $file->slurp ){
-        $data->{template} .= "$_";
+        $data->{template} .= $self->apply_rule( $_ );
     }
     $self->{data} .= Dump( $data );
 }
 
+sub apply_rule {
+    my ( $self, $str ) = @_;
+    return $self->{rule}->replace( $str ) if $self->{rule};
+    return $str;
+}
+
 sub file_path {
     my ( $self, $file ) = @_;
-    my $dir_path = $self->{dir}->stringify;
+    my $dir_path = $self->{dir}->stringify ne '.' ? $self->{dir}->stringify : '';
     if( $file->stringify =~ /$dir_path\/?(.+)/ ){
         return $1
     }else{
@@ -56,7 +64,10 @@ sub file_path {
 }
 
 sub make_starter {
-    my ( $self, $class ) = @_;
+    my ( $self, $class, $debug ) = @_;
+    if( $self->{template_module} ){
+        $self->{rule} = File::Packer::Rule->new( module => $self->{template_module} );
+    }
     my $data = $self->pack;
     my $template = <<"EOF";
 package $class;
@@ -68,6 +79,10 @@ __DATA__
 
 $data
 EOF
+    if( $debug ){
+        print $template;
+        return;
+    }
     my @path = split "::", $class;
     my $name = pop @path;
     $name .= '.pm';
@@ -94,6 +109,20 @@ File::Packer - "Pack" files in directory as text data to one module for starter 
 =head1 DESCRIPTION
 
 File::Packer is
+
+=head2 Replace Rule for template
+
+=item
+Module::Name -> ___name___
+
+=item
+Module-Name  -> ___name.replace('::','-')___
+
+=item
+module_name  -> ___name.replace('::','_').lower___
+
+=item
+Name.pm      -> ___file___
 
 =head1 AUTHOR
 
