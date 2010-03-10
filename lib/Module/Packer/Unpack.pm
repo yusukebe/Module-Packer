@@ -1,4 +1,4 @@
-package File::Packer::Unpack;
+package Module::Packer::Unpack;
 use strict;
 use warnings;
 use File::Spec;
@@ -57,15 +57,15 @@ __END__
 
 =head1 NAME
 
-File::Packer::Unpack - 
+Module::Packer::Unpack - 
 
 =head1 SYNOPSIS
 
-  use File::Packer::Unpack;
+  use Module::Packer::Unpack;
 
 =head1 DESCRIPTION
 
-File::Packer::Unpack is
+Module::Packer::Unpack is
 
 =head1 AUTHOR
 

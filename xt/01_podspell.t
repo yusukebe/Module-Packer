@@ -7,5 +7,5 @@ all_pod_files_spelling_ok('lib');
 __DATA__
 Yusuke Wada
 yusuke at kamawada.com
-File::Packer
+Module::Packer
 pm

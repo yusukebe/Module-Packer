@@ -1,9 +1,9 @@
 use strict;
 use Test::More;
 
-use_ok('File::Packer::Rule');
+use_ok('Module::Packer::Rule');
 my $module = "MyApp";
-my $r = File::Packer::Rule->new( module => $module );
+my $r = Module::Packer::Rule->new( module => $module );
 my $rule = $r->_rule;
 ok( $rule->{$module} );
 use YAML;

@@ -1,4 +1,4 @@
-package File::Packer::Rule;
+package Module::Packer::Rule;
 use strict;
 use warnings;
 

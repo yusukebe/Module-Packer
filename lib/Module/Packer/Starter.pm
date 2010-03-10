@@ -1,7 +1,7 @@
-package File::Packer::Starter;
+package Module::Packer::Starter;
 use strict;
 use warnings;
-use File::Packer::Unpack;
+use Module::Packer::Unpack;
 use Template;
 
 sub new {
@@ -16,7 +16,7 @@ sub run {
     my $data = "$self->{class}::DATA";
     my $yaml = join '', <$data>;
     $yaml = $self->process_tt( $yaml );
-    my $unpacker = File::Packer::Unpack->new;
+    my $unpacker = Module::Packer::Unpack->new;
     $unpacker->unpack( $yaml );
 }
 

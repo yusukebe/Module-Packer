@@ -1,4 +1,4 @@
-package File::Packer;
+package Module::Packer;
 use strict;
 use warnings;
 our $VERSION = '0.01';
@@ -6,7 +6,7 @@ use File::Spec;
 use IO::File;
 use Path::Class qw( dir file );
 use YAML qw( Dump );
-use File::Packer::Rule;
+use Module::Packer::Rule;
 
 sub new {
     my ( $class, %opt ) = @_;
@@ -67,24 +67,24 @@ sub make_starter {
     my ( $self, $opt, $debug ) = @_;
     my $class = $opt->{starter};
     $self->{template_module} ||= $opt->{template};
-    $self->{rule} = File::Packer::Rule->new( module => $self->{template_module} );
+    $self->{rule} = Module::Packer::Rule->new( module => $self->{template_module} );
     my $data = $self->pack;
     my $template = <<"EOF";
 package $class;
-use base 'File::Packer::Starter';
+use base 'Module::Packer::Starter';
 use strict;
 use warnings;
 
 1;
 __END__
 
-=head1 SYNOPSIS
+ =head1 SYNOPSIS
 
-  use $class\:\:Starter;
-  my \$starter = $class\:\:Starter->new;
-  \$starter->run;
+   use $class\:\:Starter;
+   my \$starter = $class\:\:Starter->new;
+   \$starter->run;
 
-=cut
+ =cut
 
 __DATA__
 
@@ -111,15 +111,32 @@ __END__
 
 =head1 NAME
 
-File::Packer - "Pack" files in directory as text data to one module for starter script.
+Module::Packer - Make starter class from template module and unpack as different module.
 
 =head1 SYNOPSIS
 
-  use File::Packer;
+  $ module-packer --template MyApp --starter Foo::Starter
+
+  #or using class
+  use Module::Packer;
+  my $packer = Module::Packer->new( dir => "./" );
+  $packer->make_starter( { template => 'MyApp', starter => 'Foo::Starter' } );
+
+  # generate Starter.pm
+
+
+  # if starter class is generated
+  # in your starter script
+  use Foo::Starter;
+  my $starter = Foo::Starter->new;
+  $starter->run;
+  # if ARGV[0] is Bar, Bar class and other files like MyApp are genrated
+
 
 =head1 DESCRIPTION
 
-File::Packer is
+Module::Packer is simple script and classes for making starter script.
+This module make starter class from template module and unpack as diffrent module.
 
 =head1 AUTHOR
 

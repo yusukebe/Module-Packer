@@ -1,8 +1,8 @@
 use strict;
 use Test::More;
-use File::Packer::Starter;
+use Module::Packer::Starter;
 
-my $starter = File::Packer::Starter->new( module => 'MyApp' );
+my $starter = Module::Packer::Starter->new( module => 'MyApp' );
 my $content = << "EOF";
 [___ name -___]
 [___ USE String(name.replace('::','_')); String.lower -___]
