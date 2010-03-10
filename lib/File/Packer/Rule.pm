@@ -31,7 +31,7 @@ sub _rule {
     return {
         $module        => "[___ name ___]",
         $module_h      => "[___ name.replace('::','-') ___]",
-        $module_name   => "[___ name.replace('::','_').lower ___]",
+        $module_name   => "[___ USE String(name.replace('::','_')); String.lower ___]",
         $name       => "[___ file ___]",
     };
 }

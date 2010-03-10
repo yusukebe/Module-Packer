@@ -5,7 +5,8 @@ use File::Packer::Starter;
 my $starter = File::Packer::Starter->new( module => 'MyApp' );
 my $content = << "EOF";
 [___ name -___]
+[___ USE String(name.replace('::','_')); String.lower -___]
 EOF
 my $out = $starter->process_tt($content);
-is($out,'MyApp','Template output is ok');
+is($out,'MyAppmyapp','Template output is ok');
 done_testing;
