@@ -12,7 +12,7 @@ requires 'Getopt::Long';
 install_script 'bin/module-packer.pl';
 
 tests 't/*.t';
-#author_tests 'xt';
+author_tests 'xt';
 
 test_requires 'Test::More';
 auto_set_repository;
