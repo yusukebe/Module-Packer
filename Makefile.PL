@@ -1,5 +1,5 @@
 use inc::Module::Install;
-name 'File::Packer';
+name 'File-Packer';
 all_from 'lib/File/Packer.pm';
 
 # requires '';
