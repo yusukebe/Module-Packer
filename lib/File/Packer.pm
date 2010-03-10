@@ -64,10 +64,10 @@ sub file_path {
 }
 
 sub make_starter {
-    my ( $self, $class, $debug ) = @_;
-    if( $self->{template_module} ){
-        $self->{rule} = File::Packer::Rule->new( module => $self->{template_module} );
-    }
+    my ( $self, $opt, $debug ) = @_;
+    my $class = $opt->{starter};
+    $self->{template_module} ||= $opt->{template};
+    $self->{rule} = File::Packer::Rule->new( module => $self->{template_module} );
     my $data = $self->pack;
     my $template = <<"EOF";
 package $class;
