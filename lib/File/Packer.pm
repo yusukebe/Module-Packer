@@ -76,6 +76,15 @@ use strict;
 use warnings;
 
 1;
+__END__
+
+=head1 SYNOPSIS
+
+  use $class\:\:Starter;
+  my \$starter = $class\:\:Starter->new;
+  \$starter->run;
+
+=cut
 
 __DATA__
 
@@ -111,16 +120,6 @@ File::Packer - "Pack" files in directory as text data to one module for starter 
 =head1 DESCRIPTION
 
 File::Packer is
-
-=head2 Replace Rule for template
-
-Module::Name -> ___name___
-
-Module-Name  -> ___name.replace('::','-')___
-
-module_name  -> ___name.replace('::','_').lower___
-
-Name.pm      -> ___file___
 
 =head1 AUTHOR
 
